@@ -16,6 +16,49 @@
   <div class="content">
     <p>Id: {{id}}</p>
     <p>ShowDetails: {{showDetails}}</p>
+
+
+    <form [formGroup]="editForm">
+
+      <div class="form-group">
+        <label>ID:</label>
+        <input class="form-control" formControlName="id">
+      </div>
+
+      <div class="form-group">
+        <label>From:</label>
+        <input class="form-control" formControlName="from">
+      </div>
+      <div class="alert alert-danger" *ngIf="editForm.controls['from'].hasError('city')">
+        Die eingebene Stadt ist nicht zulässig. Gültig wären: {{
+          editForm.controls['from'].errors?.['city'].validCities.join(', ')
+        }}
+      </div>
+
+      <div class="form-group">
+        <label>To:</label>
+        <input class="form-control" formControlName="to">
+      </div>
+      <div class="alert alert-danger" *ngIf="editForm.controls['to'].hasError('city')">
+        Die eingebene Stadt ist nicht zulässig. Gültig wären: {{
+          editForm.controls['to'].errors?.['city'].validCities.join(', ')
+        }}
+      </div>
+
+      <div class="form-group">
+        <label>Date:</label>
+        <input class="form-control" formControlName="date">
+      </div>
+
+      <div class="form-group">
+        <button (click)="save()" [disabled]="!editForm.valid"
+          class="btn btn-default">
+          Save
+        </button>
+      </div>
+
+    </form>
+
   </div>
 </div>
 
