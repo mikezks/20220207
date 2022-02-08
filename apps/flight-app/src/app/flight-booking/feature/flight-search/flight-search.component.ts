@@ -6,7 +6,10 @@ import {FlightService} from '@flight-workspace/flight-lib';
 @Component({
   selector: 'flight-search',
   templateUrl: './flight-search.component.html',
-  styleUrls: ['./flight-search.component.css']
+  styleUrls: ['./flight-search.component.css'],
+  providers: [
+
+  ]
 })
 export class FlightSearchComponent implements OnInit {
 

@@ -1,8 +1,8 @@
 import {Routes} from '@angular/router';
 import {FlightBookingComponent} from './flight-booking.component';
-import {FlightEditComponent} from './flight-edit/flight-edit.component';
-import {FlightSearchComponent} from './flight-search/flight-search.component';
-import {PassengerSearchComponent} from './passenger-search/passenger-search.component';
+import {FlightEditComponent} from './feature/flight-edit/flight-edit.component';
+import { PassengerSearchComponent } from './feature/passenger-search/passenger-search.component';
+import { FlightSearchComponent } from './feature/flight-search/flight-search.component';
 
 export const FLIGHT_BOOKING_ROUTES: Routes = [
   {

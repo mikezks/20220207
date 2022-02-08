@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { validateCity, validateCityWithParams } from '../../shared/validation/city-validator';
+import { validateCity, validateCityWithParams } from '../../../shared/validation/city-validator';
 
 @Component({
   selector: 'app-flight-edit',
