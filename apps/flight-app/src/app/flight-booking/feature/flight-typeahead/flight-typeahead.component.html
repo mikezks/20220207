@@ -5,12 +5,17 @@
 
   <div class="content">
 
-    <ng-container *ngIf="{
+    <!-- <ng-container *ngIf="{
       timer: timer$ | async
     } as state">
       <p>Timer 1: {{ state.timer }}</p>
       <p>Timer 2: {{ state.timer }}</p>
-    </ng-container>
+    </ng-container> -->
+
+    <div class="form-group">
+      <label>City:</label>
+      <input class="form-control" [formControl]="control">
+    </div>
 
   </div>
 </div>
