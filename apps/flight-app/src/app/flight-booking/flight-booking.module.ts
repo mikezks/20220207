@@ -9,6 +9,7 @@ import {FlightCardComponent} from './ui/flight-card/flight-card.component';
 import {FlightEditComponent} from './feature/flight-edit/flight-edit.component';
 import { FlightSearchComponent } from './feature/flight-search/flight-search.component';
 import { PassengerSearchComponent } from './feature/passenger-search/passenger-search.component';
+import { FlightTypeaheadComponent } from './feature/flight-typeahead/flight-typeahead.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { PassengerSearchComponent } from './feature/passenger-search/passenger-s
     FlightCardComponent,
     PassengerSearchComponent,
     FlightEditComponent,
-    FlightBookingComponent
+    FlightBookingComponent,
+    FlightTypeaheadComponent
   ],
   providers: [],
   exports: [

@@ -3,6 +3,7 @@ import {FlightBookingComponent} from './flight-booking.component';
 import {FlightEditComponent} from './feature/flight-edit/flight-edit.component';
 import { PassengerSearchComponent } from './feature/passenger-search/passenger-search.component';
 import { FlightSearchComponent } from './feature/flight-search/flight-search.component';
+import { FlightTypeaheadComponent } from './feature/flight-typeahead/flight-typeahead.component';
 
 export const FLIGHT_BOOKING_ROUTES: Routes = [
   {
@@ -20,6 +21,10 @@ export const FLIGHT_BOOKING_ROUTES: Routes = [
       {
         path: 'flight-edit/:id',
         component: FlightEditComponent
+      },
+      {
+        path: 'flight-typeahead',
+        component: FlightTypeaheadComponent
       }
     ]
   }
