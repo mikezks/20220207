@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-import {Component, OnInit, Optional} from '@angular/core';
-import {Flight, FlightService} from '@flight-workspace/flight-lib';
+import { Component, OnInit } from '@angular/core';
+import { Flight, FlightService } from '@flight-workspace/flight-lib';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { flightsLoaded } from '../../+state/flight-booking.actions';
-import { FlightBookingRootState } from '../../+state/flight-booking.reducer';
+import * as fromflightBooking from '../../+state';
 
 @Component({
   selector: 'flight-search',
@@ -30,7 +29,7 @@ export class FlightSearchComponent implements OnInit {
 
   constructor(
     private flightService: FlightService,
-    private store: Store<FlightBookingRootState>) {
+    private store: Store<fromflightBooking.FlightBookingRootState>) {
   }
 
   ngOnInit() {
@@ -43,7 +42,7 @@ export class FlightSearchComponent implements OnInit {
       .find(this.from, this.to, this.urgent)
       .subscribe(
         flights => this.store.dispatch(
-          flightsLoaded({ flights })
+          fromflightBooking.flightsLoaded({ flights })
         )
       );
   }
