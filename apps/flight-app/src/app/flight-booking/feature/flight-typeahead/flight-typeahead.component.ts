@@ -2,7 +2,7 @@ import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Flight } from '@flight-workspace/flight-lib';
-import { Observable, timer, EMPTY, Subscription, take, tap, share, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
+import { Observable, timer, EMPTY, Subscription, take, tap, share, filter, debounceTime, distinctUntilChanged, switchMap, catchError, of } from 'rxjs';
 
 @Component({
   selector: 'flight-workspace-flight-typeahead',
@@ -14,31 +14,39 @@ export class FlightTypeaheadComponent implements OnInit, OnDestroy {
   subscription = new Subscription();
 
   control = new FormControl();
-  // flights$: Observable<Flight[]>;
+  flights$: Observable<Flight[]> = this.getFlightResult();
   loading = false;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    // this.rxjsDemo();
+  }
+
+  getFlightResult(): Observable<Flight[]> {
     /**
      * Stream 1: Form Control current value
      * - Trigger
      * - Data Provider
      */
-    this.control.valueChanges.pipe(
+    return this.control.valueChanges.pipe(
       // START Filter
       filter(city => city.length > 2),
       debounceTime(300),
       distinctUntilChanged(),
       // END Filter
+      // Side-Effect: set loading property
+      tap(() => this.loading = true),
       /**
        * Stream 2: Load filtered data from backend API
        * - Data Provider
        */
-      switchMap(city => this.load(city))
-    ).subscribe(console.log);
-
-    // this.rxjsDemo();
+      switchMap(city => this.load(city).pipe(
+        catchError(() => of([]))
+      )),
+      // Side-Effect: set loading property
+      tap(() => this.loading = false)
+    );
   }
 
   load(from: string): Observable<Flight[]> {
