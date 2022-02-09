@@ -11,6 +11,7 @@ import { FlightCancellingModule } from './flight-booking/ui/flight-cancelling/fl
 import { SharedModule } from './shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 import { reducers, metaReducers } from './+state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
@@ -30,6 +31,10 @@ import { environment } from '../environments/environment';
     RouterModule.forRoot(APP_ROUTES),
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router',
+      routerState: RouterState.Minimal
+    }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   declarations: [
