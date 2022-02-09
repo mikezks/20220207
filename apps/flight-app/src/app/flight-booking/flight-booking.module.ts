@@ -10,6 +10,10 @@ import {FlightEditComponent} from './feature/flight-edit/flight-edit.component';
 import { FlightSearchComponent } from './feature/flight-search/flight-search.component';
 import { PassengerSearchComponent } from './feature/passenger-search/passenger-search.component';
 import { FlightTypeaheadComponent } from './feature/flight-typeahead/flight-typeahead.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromFlightBooking from './+state/flight-booking.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { FlightBookingEffects } from './+state/flight-booking.effects';
 
 @NgModule({
   imports: [
@@ -17,7 +21,9 @@ import { FlightTypeaheadComponent } from './feature/flight-typeahead/flight-type
     FormsModule,
     ReactiveFormsModule,
     SharedModule.forChild(),
-    RouterModule.forChild(FLIGHT_BOOKING_ROUTES)
+    RouterModule.forChild(FLIGHT_BOOKING_ROUTES),
+    StoreModule.forFeature(fromFlightBooking.flightBookingFeatureKey, fromFlightBooking.reducer),
+    EffectsModule.forFeature([FlightBookingEffects])
   ],
   declarations: [
     FlightSearchComponent,
